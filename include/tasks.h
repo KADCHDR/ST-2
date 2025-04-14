@@ -1,10 +1,9 @@
 // Copyright 2022 UNN-CS
-#pragma once
 
-struct PoolResult {
-    double concreteCost;
-    double fenceCost;
-};
+#ifndef INCLUDE_TASKS_H_
+#define INCLUDE_TASKS_H_
 
-double solveRopeProblem();
-PoolResult calculatePoolCost();
+double calculateGap();
+double calculatePoolCost();
+
+#endif // INCLUDE_TASKS_H_
