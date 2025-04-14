@@ -1,24 +1,29 @@
 // Copyright 2022 UNN-CS
-#include "tasks.h"
-#include "circle.h"
+#include "../include/tasks.h"
+#include "../include/circle.h"
 
-double solveRopeProblem() {
-    const double earthRadius = 6378100.0;
-    Circle earth(earthRadius);
-    earth.setFerence(earth.getFerence() + 1.0);
-    return earth.getRadius() - earthRadius;
+double calculateGap() {
+  double earthRadius = 6378100;
+  Circle earth(earthRadius);
+  double ropeLength = earth.getFerence() + 1;
+  earth.setFerence(ropeLength);
+  return earth.getRadius() - earthRadius;
 }
 
-PoolResult calculatePoolCost() {
-    const double poolRadius = 3.0;
-    const double width = 1.0;
-    const double outerRadius = poolRadius + width;
+double calculatePoolCost() {
+  double poolRadius = 3;
+  double pathWidth = 1;
+  double concreteCostPerSquareMeter = 1000;
+  double fenceCostPerMeter = 2000;
 
-    Circle pool(poolRadius);
-    Circle outer(outerRadius);
+  Circle pool(poolRadius);
+  Circle poolWithPath(poolRadius + pathWidth);
 
-    PoolResult result;
-    result.concreteCost = (outer.getArea() - pool.getArea()) * 1000.0;
-    result.fenceCost = outer.getFerence() * 2000.0;
-    return result;
+  double pathArea = poolWithPath.getArea() - pool.getArea();
+  double fenceLength = poolWithPath.getFerence();
+
+  double totalConcreteCost = pathArea * concreteCostPerSquareMeter;
+  double totalFenceCost = fenceLength * fenceCostPerMeter;
+
+  return totalConcreteCost + totalFenceCost;
 }
