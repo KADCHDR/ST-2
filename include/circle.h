@@ -2,7 +2,6 @@
 
 #ifndef INCLUDE_CIRCLE_H_
 #define INCLUDE_CIRCLE_H_
-#include <cstdint>
 
 const double PI = 3.1415926535;
 
@@ -28,5 +27,4 @@ class Circle {
   double getArea() const;
 };
 
-#endif  // INCLUDE_CIRCLE_H_
 #endif // INCLUDE_CIRCLE_H_
